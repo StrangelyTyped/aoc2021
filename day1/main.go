@@ -28,24 +28,22 @@ func sum(slice []int) int {
 	return x
 }
 
-func partOne(depths []int) int {
+func windowSum(depths []int, windowSize int) int {
 	count := 0
-	for i := 1; i < len(depths); i++ {
-		if depths[i] > depths[i-1] {
+	for i := windowSize; i < len(depths); i++ {
+		if sum(depths[i-(windowSize-1):i+1]) > sum(depths[i-windowSize:i]) {
 			count++
 		}
 	}
 	return count
 }
 
+func partOne(depths []int) int {
+	return windowSum(depths, 1)
+}
+
 func partTwo(depths []int) int {
-	count := 0
-	for i := 3; i < len(depths); i++ {
-		if sum(depths[i-2:i+1]) > sum(depths[i-3:i]) {
-			count++
-		}
-	}
-	return count
+	return windowSum(depths, 3)
 }
 
 func main() {
