@@ -1,9 +1,8 @@
-package main
+package day1
 
 import (
 	"fmt"
 	"io"
-	"os"
 	"strconv"
 	"strings"
 )
@@ -46,13 +45,8 @@ func partTwo(depths []int) int {
 	return windowSum(depths, 3)
 }
 
-func main() {
-	file, err := os.Open("./input.txt")
-	if err != nil {
-		panic(err)
-	}
-
-	dataBytes, err := io.ReadAll(file)
+func Main(input io.Reader) {
+	dataBytes, err := io.ReadAll(input)
 	if err != nil {
 		panic(err)
 	}
@@ -62,7 +56,6 @@ func main() {
 		panic(err)
 	}
 
-	
 	fmt.Printf("Part 1: %d\n", partOne(depths))
 	fmt.Printf("Part 2: %d\n", partTwo(depths))
 }
