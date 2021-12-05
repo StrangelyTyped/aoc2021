@@ -4,7 +4,8 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"strconv"
+
+	"github.com/strangelytyped/aoc2021/utils"
 )
 
 type position struct {
@@ -60,13 +61,9 @@ func readInstructions(input io.Reader) []instruction {
 	for scanner.Scan() {
 		dir := scanner.Text()
 		scanner.Scan()
-		dist, err := strconv.Atoi(scanner.Text())
-		if err != nil {
-			panic(err)
-		}
 		instructions = append(instructions, instruction{
 			direction: dir,
-			distance: dist,
+			distance: utils.ParseIntOrPanic(scanner.Text()),
 		})
 	}
 	return instructions

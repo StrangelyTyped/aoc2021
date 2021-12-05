@@ -3,18 +3,15 @@ package day1
 import (
 	"fmt"
 	"io"
-	"strconv"
 	"strings"
+
+	"github.com/strangelytyped/aoc2021/utils"
 )
 
 func readInts(dataBytes []byte) ([]int, error) {
 	var ints []int
 	for _, line := range strings.Split(strings.TrimSpace(string(dataBytes)), "\n") {
-		depth, err := strconv.Atoi(strings.TrimSpace(line))
-		if err != nil {
-			return nil, err
-		}
-		ints = append(ints, depth)
+		ints = append(ints, utils.ParseIntOrPanic(strings.TrimSpace(line)))
 	}
 	return ints, nil
 }

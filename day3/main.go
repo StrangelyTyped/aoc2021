@@ -37,8 +37,6 @@ func partOne(input []string) int {
 	return gamma * epsilon
 }
 
-
-
 func partTwo(input []string) int {
 	o2 := runFilter(input, true)
 	co2 := runFilter(input, false)

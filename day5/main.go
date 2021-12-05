@@ -5,12 +5,10 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"strconv"
 	"strings"
 	"unicode"
 )
 type terrainMap map[int64]int
-
 
 func expandAndMap(terrain terrainMap, row []int) {
 	x,y := row[0],row[1]
@@ -46,7 +44,6 @@ func partOne(input [][]int) int {
 	return run(input, true)
 }
 
-
 func partTwo(input [][]int) int {
 	return run(input, false)
 }
@@ -55,15 +52,10 @@ func readInput(input io.Reader) [][]int {
 	var result [][]int
 	scanner := bufio.NewScanner(input)
 	for scanner.Scan() {
-		line := scanner.Text()
-		strNums := strings.FieldsFunc(line, func(r rune) bool { return !unicode.IsNumber(r) })
+		strNums := strings.FieldsFunc(scanner.Text(), func(r rune) bool { return !unicode.IsNumber(r) })
 		var nums []int
 		for _, strNum := range strNums {
-			num, err := strconv.Atoi(strNum)
-			if err != nil {
-				panic(err)
-			}
-			nums = append(nums, num)
+			nums = append(nums, utils.ParseIntOrPanic(strNum))
 		}
 		result = append(result, nums)
 	}

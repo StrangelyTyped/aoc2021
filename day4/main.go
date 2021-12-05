@@ -5,7 +5,8 @@ import (
 	"io"
 	"io/ioutil"
 	"strings"
-	"strconv"
+
+	"github.com/strangelytyped/aoc2021/utils"
 )
 
 
@@ -48,7 +49,7 @@ func (c *card) sumUnset() int {
 	result := 0
 	for num, idx := range c.valueMap {
 		if (c.state & idx) == 0 {
-			result += parseOrDie(num)
+			result += utils.ParseIntOrPanic(num)
 		}
 	}
 	return result
@@ -64,14 +65,6 @@ func makeCards(rawCards [][]string) []*card {
 		cards = append(cards, &card{valueMap, 0})
 	}
 	return cards
-}
-
-func parseOrDie(str string) int {
-	result, err := strconv.Atoi(str)
-	if err != nil {
-		panic(err)
-	}
-	return result
 }
 
 func callNumber(cards []*card, n string) []*card {
@@ -108,7 +101,7 @@ func runForWinnerCount(numbers []string, rawCards [][]string, desiredWinners int
 		panic("No winning card found")
 	}
 
-	winningNum := parseOrDie(numbers[lastIdx])
+	winningNum := utils.ParseIntOrPanic(numbers[lastIdx])
 	cardSum := lastCard.sumUnset()
 	return cardSum * winningNum
 }
