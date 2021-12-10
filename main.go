@@ -12,7 +12,9 @@ import (
 	"github.com/strangelytyped/aoc2021/day5"
 	"github.com/strangelytyped/aoc2021/day6"
 	"github.com/strangelytyped/aoc2021/day7"
-	"github.com/strangelytyped/aoc2021/day8"
+	//"github.com/strangelytyped/aoc2021/day8"
+
+	"github.com/strangelytyped/aoc2021/day10"
 )
 
 func openOrPanic(filename string) io.Reader {
@@ -39,5 +41,8 @@ func main() {
 	fmt.Println("Day 7")
 	day7.Main(openOrPanic("inputs/day7.txt"))
 	fmt.Println("Day 8")
-	day8.Main(openOrPanic("inputs/day8.txt"))
+	//day8.Main(openOrPanic("inputs/day8.txt"))
+
+	fmt.Println("Day 10")
+	day10.Main(openOrPanic("inputs/day10.txt"))
 }
